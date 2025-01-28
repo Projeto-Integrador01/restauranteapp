@@ -18,7 +18,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tb_produtos")
-public class Produtos {
+public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,12 +40,12 @@ public class Produtos {
 	private String isSaudavel;
 
 	@ManyToOne
-	@JsonIgnoreProperties("produtos") 
-	private List<Categoria> categoria;
-	
+	@JsonIgnoreProperties("produto")
+	private Categoria categoria;
+
 	@ManyToOne
-	@JsonIgnoreProperties("produtos") 
-	private List<Restaurante> restaurante;
+	@JsonIgnoreProperties("produto")
+	private Restaurante restaurante;
 
 	public Long getId() {
 		return id;
@@ -95,21 +95,24 @@ public class Produtos {
 		this.isSaudavel = isSaudavel;
 	}
 
-	public List<Categoria> getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(List<Categoria> categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
-	public List<Restaurante> getRestaurante() {
+	public Restaurante getRestaurante() {
 		return restaurante;
 	}
 
-	public void setRestaurante(List<Restaurante> restaurante) {
+	public void setRestaurante(Restaurante restaurante) {
 		this.restaurante = restaurante;
 	}
+
 	
+
 	
+
 }
