@@ -10,5 +10,8 @@ import com.generation.restauranteapp.model.Restaurante;
 public interface RestauranteRepository extends JpaRepository<Restaurante, Long> {
 
 	List<Restaurante> findAllByEnderecoContainingIgnoreCase(@Param("endereco") String endereco);
+	
+	List<Restaurante> findAllByNomeContainingIgnoreCase(@Param("nome") String nome);
+
 
 }

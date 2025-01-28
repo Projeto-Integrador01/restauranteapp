@@ -30,11 +30,10 @@ public class Categoria {
 	@NotBlank(message = " O atribuito descrição é obrigatório ")
 	@Size(min = 6, max = 255, message = "O atributo descrição deve ter pelo menos 6 caracteres ")
 	private String descricao;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("categoria") 
-	private List<Produto> produtos;
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("categoria")
+	private List<Produto> produto;
 
 	public Long getId() {
 		return id;
@@ -60,12 +59,17 @@ public class Categoria {
 		this.descricao = descricao;
 	}
 
+	
+
 	public List<Produto> getProduto() {
-		return produtos;
+		return produto;
 	}
 
 	public void setProduto(List<Produto> produto) {
-		this.produtos = produto;
-	}
+		this.produto = produto;
 
+	
+	
+
+	}
 }

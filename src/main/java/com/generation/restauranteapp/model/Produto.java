@@ -105,5 +105,4 @@ public class Produto {
 	public void setRestaurante(Restaurante restaurante) {
 		this.restaurante = restaurante;
 	}
-
 }
