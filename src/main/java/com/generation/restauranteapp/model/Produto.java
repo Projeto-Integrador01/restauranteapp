@@ -1,24 +1,19 @@
 package com.generation.restauranteapp.model;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tb_produtos")
-public class Produtos {
+public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,12 +35,12 @@ public class Produtos {
 	private String isSaudavel;
 
 	@ManyToOne
-	@JsonIgnoreProperties("produtos") 
-	private List<Categoria> categoria;
-	
+	@JsonIgnoreProperties("produto")
+	private Categoria categoria;
+
 	@ManyToOne
-	@JsonIgnoreProperties("produtos") 
-	private List<Restaurante> restaurante;
+	@JsonIgnoreProperties("produto")
+	private Restaurante restaurante;
 
 	public Long getId() {
 		return id;
@@ -95,21 +90,20 @@ public class Produtos {
 		this.isSaudavel = isSaudavel;
 	}
 
-	public List<Categoria> getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(List<Categoria> categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
-	public List<Restaurante> getRestaurante() {
+	public Restaurante getRestaurante() {
 		return restaurante;
 	}
 
-	public void setRestaurante(List<Restaurante> restaurante) {
+	public void setRestaurante(Restaurante restaurante) {
 		this.restaurante = restaurante;
 	}
-	
-	
+
 }
