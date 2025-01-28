@@ -32,9 +32,6 @@ import jakarta.validation.Valid;
 public class ProdutoController {
 
 	@Autowired
-	private ProdutoRepository produtoRepository;
-
-	@Autowired
 	private ProdutoService produtoService;
 
 	@GetMapping
@@ -53,8 +50,8 @@ public class ProdutoController {
 	}
 
 	@GetMapping("/saudavel/{saudavel}")
-	public ResponseEntity<List<Produto>> getByIsSaudavel(@PathVariable String isSaudavel) {
-		return produtoService.procurarPorIsSaudavel(isSaudavel);
+	public ResponseEntity<List<Produto>> getByIsSaudavel(@PathVariable String saudavel) {
+		return produtoService.procurarPorIsSaudavel(saudavel);
 	}
 
 	@PostMapping

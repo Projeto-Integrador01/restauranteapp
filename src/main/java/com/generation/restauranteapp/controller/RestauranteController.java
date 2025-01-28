@@ -45,7 +45,7 @@ public class RestauranteController {
 	}
 	
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<Restaurante>> findAllByNome(String nome){
+	public ResponseEntity<List<Restaurante>> findAllByNome(@PathVariable String nome){
 		return  restauranteService.encontrarPorNome(nome);
 	}
 

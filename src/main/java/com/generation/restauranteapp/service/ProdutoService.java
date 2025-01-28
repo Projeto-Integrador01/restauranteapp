@@ -37,7 +37,15 @@ public class ProdutoService {
 	}
 
 	public ResponseEntity<List<Produto>> procurarPorIsSaudavel(String isSaudavel) {
-		return ResponseEntity.ok(produtoRepository.findAllByIsSaudavelContainingIgnoreCase(isSaudavel));
+		if (isSaudavel.equalsIgnoreCase("verdadeiro")) {
+			List<Produto> produtos = produtoRepository.findAllByIsSaudavelContainingIgnoreCase("verdadeiro");
+			return ResponseEntity.ok(produtos);
+		} else if (isSaudavel.equalsIgnoreCase("falso")) {
+			List<Produto> produtos = produtoRepository.findAllByIsSaudavelContainingIgnoreCase("falso");
+			return ResponseEntity.ok(produtos);
+		}
+		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Digite verdadeiro ou falso para exibir os alimentos");
+
 	}
 
 	public ResponseEntity<Produto> atualizarProduto(Produto produto) {

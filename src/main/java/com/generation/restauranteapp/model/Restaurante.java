@@ -46,7 +46,7 @@ public class Restaurante {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("restaurante") 
-	private List<Produto> produtos;
+	private List<Produto> produto;
 
 
 	public Long getId() {
@@ -109,13 +109,13 @@ public class Restaurante {
 	}
 
 
-	public List<Produto> getProdutos() {
-		return produtos;
+	public List<Produto> getProduto() {
+		return produto;
 	}
 
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setProdutos(List<Produto> produto) {
+		this.produto = produto;
 	}
 	
 	
