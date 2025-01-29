@@ -60,7 +60,7 @@ public class RestauranteService {
 	public Optional<Restaurante> atualizarRestaurante(Restaurante restaurante) {
 		if (restauranteRepository.findById(restaurante.getId()).isPresent()) {
 
-			Optional<Restaurante> buscaUsuario = restauranteRepository.findByNome(restaurante.getUsuario());
+			Optional<Restaurante> buscaUsuario = restauranteRepository.findByUsuario(restaurante.getUsuario());
 
 			if ((buscaUsuario.isPresent()) && (buscaUsuario.get().getId() != restaurante.getId()))
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já existe!", null);
@@ -86,7 +86,8 @@ public class RestauranteService {
 
 	public Optional<RestauranteLogin> autenticarRestaurante(Optional<RestauranteLogin> restauranteLogin) {
 
-		var credenciais = new UsernamePasswordAuthenticationToken(restauranteLogin.get().getUsuario(), restauranteLogin.get().getSenha());
+		var credenciais = new UsernamePasswordAuthenticationToken(restauranteLogin.get().getUsuario(),
+				restauranteLogin.get().getSenha());
 
 		Authentication authentication = authenticationManager.authenticate(credenciais);
 
