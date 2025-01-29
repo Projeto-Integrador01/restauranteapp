@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-		Optional<Restaurante> restaurante = restauranteRepository.findByRestaurante(userName);
+		Optional<Restaurante> restaurante = restauranteRepository.findByNome(userName);
 
 		if (restaurante.isPresent())
 			return new UserDetailsImpl(restaurante.get());

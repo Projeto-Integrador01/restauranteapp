@@ -49,7 +49,7 @@ public class RestauranteService {
 	}
 
 	public Optional<Restaurante> criarRestaurante(Restaurante restaurante) {
-		if (restauranteRepository.findByRestaurante(restaurante.getUsuario()).isPresent())
+		if (restauranteRepository.findByNome(restaurante.getUsuario()).isPresent())
 			return Optional.empty();
 
 		restaurante.setSenha(criptografarSenha(restaurante.getSenha()));
@@ -60,7 +60,7 @@ public class RestauranteService {
 	public Optional<Restaurante> atualizarRestaurante(Restaurante restaurante) {
 		if (restauranteRepository.findById(restaurante.getId()).isPresent()) {
 
-			Optional<Restaurante> buscaUsuario = restauranteRepository.findByRestaurante(restaurante.getUsuario());
+			Optional<Restaurante> buscaUsuario = restauranteRepository.findByNome(restaurante.getUsuario());
 
 			if ((buscaUsuario.isPresent()) && (buscaUsuario.get().getId() != restaurante.getId()))
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já existe!", null);
@@ -86,15 +86,13 @@ public class RestauranteService {
 
 	public Optional<RestauranteLogin> autenticarRestaurante(Optional<RestauranteLogin> restauranteLogin) {
 
-		var credenciais = new UsernamePasswordAuthenticationToken(restauranteLogin.get().getUsuario(),
-				restauranteLogin.get().getSenha());
+		var credenciais = new UsernamePasswordAuthenticationToken(restauranteLogin.get().getUsuario(), restauranteLogin.get().getSenha());
 
 		Authentication authentication = authenticationManager.authenticate(credenciais);
 
 		if (authentication.isAuthenticated()) {
 
-			Optional<Restaurante> usuario = restauranteRepository
-					.findByRestaurante(restauranteLogin.get().getUsuario());
+			Optional<Restaurante> usuario = restauranteRepository.findByNome(restauranteLogin.get().getUsuario());
 
 			if (usuario.isPresent()) {
 
