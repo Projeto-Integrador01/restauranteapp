@@ -49,7 +49,7 @@ public class RestauranteService {
 	}
 
 	public Optional<Restaurante> criarRestaurante(Restaurante restaurante) {
-		if (restauranteRepository.findByNome(restaurante.getUsuario()).isPresent())
+		if (restauranteRepository.findByUsuario(restaurante.getUsuario()).isPresent())
 			return Optional.empty();
 
 		restaurante.setSenha(criptografarSenha(restaurante.getSenha()));
@@ -92,7 +92,7 @@ public class RestauranteService {
 
 		if (authentication.isAuthenticated()) {
 
-			Optional<Restaurante> usuario = restauranteRepository.findByNome(restauranteLogin.get().getUsuario());
+			Optional<Restaurante> usuario = restauranteRepository.findByUsuario(restauranteLogin.get().getUsuario());
 
 			if (usuario.isPresent()) {
 
