@@ -1,6 +1,7 @@
 package com.generation.restauranteapp.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
@@ -13,5 +14,6 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 	
 	public List<Restaurante> findAllByNomeContainingIgnoreCase(@Param("nome") String nome);
 
+	public Optional<Restaurante> findByRestaurante(String restaurante);
 
 }

@@ -1,7 +1,6 @@
 package com.generation.restauranteapp.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.generation.restauranteapp.model.Categoria;
-import com.generation.restauranteapp.repository.CategoriaRepository;
 import com.generation.restauranteapp.service.CategoriaService;
 
 import jakarta.validation.Valid;

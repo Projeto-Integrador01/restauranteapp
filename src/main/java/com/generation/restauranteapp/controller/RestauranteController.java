@@ -1,6 +1,7 @@
 package com.generation.restauranteapp.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.generation.restauranteapp.model.Restaurante;
+import com.generation.restauranteapp.model.RestauranteLogin;
 import com.generation.restauranteapp.service.RestauranteService;
 
 import jakarta.validation.Valid;
@@ -29,7 +31,7 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteService restauranteService;
 
-	@GetMapping // LISTAR TUDO
+	@GetMapping
 	public ResponseEntity<List<Restaurante>> getAll() {
 		return restauranteService.encontrarTodos();
 	}
@@ -43,20 +45,33 @@ public class RestauranteController {
 	public ResponseEntity<List<Restaurante>> getByEndereco(@PathVariable String endereco) {
 		return restauranteService.encontrarPorEndereco(endereco);
 	}
-	
+
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<Restaurante>> findAllByNome(@PathVariable String nome){
-		return  restauranteService.encontrarPorNome(nome);
+	public ResponseEntity<List<Restaurante>> findAllByNome(@PathVariable String nome) {
+		return restauranteService.encontrarPorNome(nome);
 	}
 
-	@PutMapping // ATUALIZAR CATEGORIA
+	@PostMapping("/cadastrar")
+	public ResponseEntity<Restaurante> post(@RequestBody @Valid Restaurante restaurante) {
+
+		return restauranteService.criarRestaurante(restaurante)
+				.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
+				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+
+	}
+
+	@PostMapping("/logar")
+	public ResponseEntity<RestauranteLogin> autenticar(@RequestBody Optional<RestauranteLogin> restauranteLogin) {
+		return restauranteService.autenticarRestaurante(restauranteLogin)
+				.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
+				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+	}
+
+	@PutMapping
 	public ResponseEntity<Restaurante> put(@Valid @RequestBody Restaurante restaurante) {
-		return restauranteService.atualizarRestaurante(restaurante);
-	}
-
-	@PostMapping // CRIAR CATEGORIA
-	public ResponseEntity<Restaurante> post(@Valid @RequestBody Restaurante restaurante) {
-		return restauranteService.criarRestaurante(restaurante);
+		return restauranteService.atualizarRestaurante(restaurante)
+				.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
+				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -64,4 +79,5 @@ public class RestauranteController {
 	public void delete(@PathVariable Long id) {
 		restauranteService.deletarRestaurante(id);
 	}
+
 }
