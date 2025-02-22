@@ -60,6 +60,7 @@ Para contribuir com o projeto, siga os seguintes passos:
 📌 [Camilly Silva]  
 📌 [Danilo Almeida]  
 📌 [Gabriel Nogueira]  
+📌 [Gustavo Correa]  
 📌 [Rosilene Farias]  
 
 
