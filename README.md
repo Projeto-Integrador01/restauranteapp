@@ -1,4 +1,4 @@
-📌 **PratoCerto - Back-End**
+📌 PratoCerto - Back-End
 
 ## 📖 Descrição do Projeto
 O **PratoCerto** é uma plataforma desenvolvida para otimizar a gestão de restaurantes, permitindo que eles se cadastrem rapidamente e organizem seus produtos de maneira eficiente. Após o cadastro, os restaurantes podem adicionar itens ao cardápio e classificá-los em categorias predefinidas, como:
