@@ -44,9 +44,9 @@ public class ProdutoController {
 		return produtoService.procurarPorNome(nome);
 	}
 
-	@GetMapping("/saudavel/{saudavel}")
-	public ResponseEntity<List<Produto>> getByIsSaudavel(@PathVariable String saudavel) {
-		return produtoService.procurarPorIsSaudavel(saudavel);
+	@GetMapping("/tipoalimento/{tipoalimento}")
+	public ResponseEntity<List<Produto>> getByTipoAlimento(@PathVariable String tipoalimento) {
+		return produtoService.procurarPorTipoAlimento(tipoalimento);
 	}
 
 	@PostMapping

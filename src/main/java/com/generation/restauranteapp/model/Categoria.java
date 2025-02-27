@@ -27,9 +27,8 @@ public class Categoria {
 	@Size(min = 2, max = 100, message = "O atributo nome deve ter no mínimo 5 caracteres")
 	private String nome;
 
-	@NotBlank(message = " O atribuito descrição é obrigatório ")
-	@Size(min = 6, max = 255, message = "O atributo descrição deve ter pelo menos 6 caracteres ")
-	private String descricao;
+	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
+	private String foto;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
@@ -51,15 +50,13 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
-
-	
 
 	public List<Produto> getProduto() {
 		return produto;
@@ -67,9 +64,6 @@ public class Categoria {
 
 	public void setProduto(List<Produto> produto) {
 		this.produto = produto;
-
-	
-	
-
 	}
 }
+

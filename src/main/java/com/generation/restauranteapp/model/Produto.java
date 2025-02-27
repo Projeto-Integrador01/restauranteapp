@@ -31,8 +31,8 @@ public class Produto {
 	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
 	private String foto;
 
-	@Size(max = 10, message = "O isSaudavel não poder ser maior que 10 caracteres")
-	private String isSaudavel;
+	@Size(max = 11, message = "O tipo do alimento não poder ser maior que 11 caracteres")
+	private String tipoAlimento;
 
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
@@ -82,12 +82,12 @@ public class Produto {
 		this.foto = foto;
 	}
 
-	public String getIsSaudavel() {
-		return isSaudavel;
+	public String getTipoAlimento() {
+		return tipoAlimento;
 	}
 
-	public void setIsSaudavel(String isSaudavel) {
-		this.isSaudavel = isSaudavel;
+	public void setTipoAlimento(String tipoAlimento) {
+		this.tipoAlimento = tipoAlimento;
 	}
 
 	public Categoria getCategoria() {

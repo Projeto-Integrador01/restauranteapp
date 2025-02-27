@@ -42,8 +42,7 @@ public class CategoriaService {
 		if (categoriaRepository.findCategoriaByNomeContainingIgnoreCase(categoria.getNome()).isEmpty())
 			return ResponseEntity.status(HttpStatus.OK).body(categoriaRepository.save(categoria));
 		else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-					"Nome de categoria já existente: " + categoria.getNome());
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nome de categoria já existente: " + categoria.getNome());
 		}
 	}
 
